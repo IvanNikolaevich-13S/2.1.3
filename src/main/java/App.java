@@ -5,8 +5,23 @@ public class App {
     public static void main(String[] args) {
         ApplicationContext applicationContext =
                 new AnnotationConfigApplicationContext(AppConfig.class);
+
         HelloWorld bean =
-                (HelloWorld) applicationContext.getBean("helloworld");
+                applicationContext.getBean("helloworld", HelloWorld.class);
+        HelloWorld bean2 =
+                applicationContext.getBean("helloworld", HelloWorld.class);
+
+        Cat bean3 =
+                applicationContext.getBean("cat", Cat.class);
+        Cat bean4 =
+                applicationContext.getBean("cat", Cat.class);
+
+        System.out.println("Ссылаются ли bean и bean2 на один и тот же объект?");
+        System.out.println(bean == bean2);
+        System.out.println("Ссылаются ли bean и bean2 на один и тот же объект?");
+        System.out.println(bean3 == bean4);
+
+
         System.out.println(bean.getMessage());
     }
 }
